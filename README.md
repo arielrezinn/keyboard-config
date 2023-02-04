@@ -26,6 +26,7 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         return true;
     }
     ```
+1. Change the TAPPING_TOGGLE value to 2 in `quantum/action_tapping.h`
 1. Add a tap dance that allows grave/tilda and esc to share a key
     1. Add `TAP_DANCE_ENABLE = yes` to `keyboards/keychron/k6_pro/rules.mk`
     1. Define the tap dance in `keyboards/keychron/k6_pro/ansi/rgb/keymaps/default/keymap.c` if it's not already there
