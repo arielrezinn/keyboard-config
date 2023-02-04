@@ -47,6 +47,57 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         // ...
     };
     ```
+1. Add some macros
+    1. Define some more keycodes in `keyboards/keychron/k6_pro/k6_pro.h`
+    ```
+    enum {
+        KC_LOPTN = USER_START,
+        KC_ROPTN,
+        KC_LCMMD,
+        KC_RCMMD,
+        KC_MCTL,
+        KC_LNPD,
+        KC_TASK,
+        KC_FILE,
+        KC_SNAP,
+        KC_CTANA,
+        KC_SIRI,
+        KC_USR1,
+        KC_PAS1,
+        KC_USR2,
+        KC_PAS2,
+    #ifdef KC_BLUETOOTH_ENABLE
+        BT_HST1,
+        BT_HST2,
+        BT_HST3,
+    #endif
+        BAT_LVL,
+        NEW_SAFE_RANGE,
+    };
+    ```
+    1. Add more cases to the switch statement in process_record_kb() in `keyboards/keychron/k6_pro/k6_pro.c`
+    ```
+    case KC_USR1:
+        if (record->event.pressed) {
+            SEND_STRING("Test1");
+        }
+        return false; // Skip all further processing of this key
+    case KC_PAS1:
+        if (record->event.pressed) {
+            SEND_STRING("Test2");
+        }
+        return false; // Skip all further processing of this key
+    case KC_USR2:
+        if (record->event.pressed) {
+            SEND_STRING("Test3");
+        }
+        return false; // Skip all further processing of this key
+    case KC_PAS2:
+        if (record->event.pressed) {
+            SEND_STRING("Test4");
+        }
+        return false; // Skip all further processing of this key
+    ```
 1. Make the battery level animation quicker in `keyboards/keychron/bluetooth/bat_level_animation.c`
     ```
     #ifndef BAT_LEVEL_GROWING_INTERVAL
