@@ -8,16 +8,7 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
 
 # Changes
 
-1. Make the battery level animation quicker in `keyboards/keychron/bluetooth/bat_level_animation.c`
-    ```
-    #ifndef BAT_LEVEL_GROWING_INTERVAL
-    #    define BAT_LEVEL_GROWING_INTERVAL 80 // ORIGINALLY 150
-    #endif
-
-    #ifndef BAT_LEVEL_ON_INTERVAL
-    #    define BAT_LEVEL_ON_INTERVAL 1000 // ORIGINALLY 3000
-    #endif
-    ```
+1. Rearrange layers and reassign keys in the `keyboards/keychron/k6_pro/ansi/rgb/keymaps/vial/keymap.c` (View a copy of my changes in [keymap.c](keymap.c))
 1. Add code that changes which layers the dip switch toggles between in `keyboards/keychron/k6_pro/k6_pro.c`
     ```
     bool dip_switch_update_kb(uint8_t index, bool active) {
@@ -34,6 +25,16 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
 
         return true;
     }
+    ```
+1. Make the battery level animation quicker in `keyboards/keychron/bluetooth/bat_level_animation.c`
+    ```
+    #ifndef BAT_LEVEL_GROWING_INTERVAL
+    #    define BAT_LEVEL_GROWING_INTERVAL 80 // ORIGINALLY 150
+    #endif
+
+    #ifndef BAT_LEVEL_ON_INTERVAL
+    #    define BAT_LEVEL_ON_INTERVAL 1000 // ORIGINALLY 3000
+    #endif
     ```
 1. Give the customKeycodes better names and titles in the `keyboards/keychron/k6_pro/ansi/rgb/keymaps/vial/vial.json`
     ```
@@ -55,4 +56,3 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         {"name": "Battery Level", "title": "Show battery level", "shortName": "Batt"}
     ],
     ```
-1. Rearrange layers and reassign keys in the `keyboards/keychron/k6_pro/ansi/rgb/keymaps/vial/keymap.c` (View a copy of my changes in [keymap.c](keymap.c))
