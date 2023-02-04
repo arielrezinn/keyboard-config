@@ -26,6 +26,16 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         return true;
     }
     ```
+1. Create a combo that sends ctrl+grave when ctrl+esc is pressed. This toggles the VS Code command line.
+    1. Add `COMBO_ENABLE = yes` to `keyboards/keychron/k6_pro/rules.mk`
+    1. Add `#define COMBO_COUNT 1` to `keyboards/keychron/k6_pro/config.h`
+    1. Define the combo in `keyboards/keychron/k6_pro/ansi/rgb/keymaps/default/keymap.c` if it's not already there
+    ```
+    const uint16_t PROGMEM vscode_cmdline_combo[] = {KC_LCTL, KC_ESC, COMBO_END};
+    combo_t key_combos[COMBO_COUNT] = {
+        COMBO(vscode_cmdline_combo, LCTL(KC_GRAVE)),
+    };
+    ```
 1. Make the battery level animation quicker in `keyboards/keychron/bluetooth/bat_level_animation.c`
     ```
     #ifndef BAT_LEVEL_GROWING_INTERVAL
