@@ -8,7 +8,7 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
 
 # Changes
 
-1. Rearrange layers and reassign keys in the `keyboards/keychron/k6_pro/ansi/rgb/keymaps/vial/keymap.c` (View a copy of my changes in [keymap.c](keymap.c))
+1. Rearrange layers and reassign keys in the `keyboards/keychron/k6_pro/ansi/rgb/keymaps/default/keymap.c` (View a copy of my changes in [keymap.c](keymap.c))
 1. Add code that changes which layers the dip switch toggles between in `keyboards/keychron/k6_pro/k6_pro.c`
     ```
     bool dip_switch_update_kb(uint8_t index, bool active) {
@@ -26,14 +26,25 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         return true;
     }
     ```
-1. Create a combo that sends ctrl+grave when ctrl+esc is pressed. This toggles the VS Code command line.
-    1. Add `COMBO_ENABLE = yes` to `keyboards/keychron/k6_pro/rules.mk`
-    1. Add `#define COMBO_COUNT 1` to `keyboards/keychron/k6_pro/config.h`
-    1. Define the combo in `keyboards/keychron/k6_pro/ansi/rgb/keymaps/default/keymap.c` if it's not already there
+1. Add a tap dance that allows grave/tilda and esc to share a key
+    1. Add `TAP_DANCE_ENABLE = yes` to `keyboards/keychron/k6_pro/rules.mk`
+    1. Define the tap dance in `keyboards/keychron/k6_pro/ansi/rgb/keymaps/default/keymap.c` if it's not already there
     ```
-    const uint16_t PROGMEM vscode_cmdline_combo[] = {KC_LCTL, KC_ESC, COMBO_END};
-    combo_t key_combos[COMBO_COUNT] = {
-        COMBO(vscode_cmdline_combo, LCTL(KC_GRAVE)),
+    // Tap Dance declaration(s)
+    enum {
+        G_ESC,
+    };
+
+    // Tap Dance definition(s)
+    qk_tap_dance_action_t tap_dance_actions[] = {
+        // Tap once for Escape, twice for Caps Lock
+        [G_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_ESCAPE),
+    };
+    // Add tap dance item to your keymap in place of a keycode
+    const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+        // ...
+        TD(G_ESC)
+        // ...
     };
     ```
 1. Make the battery level animation quicker in `keyboards/keychron/bluetooth/bat_level_animation.c`
