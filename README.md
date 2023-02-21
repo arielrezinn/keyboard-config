@@ -18,8 +18,8 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
             // default_layer_set(1UL << (active ? 1 : 0));
 
             // -------------------THIS IS MY CUSTOM SETTING-------------------
-            // Mac/iOS side of switch is layer 0 and Win/Android side of switch is layer 3
-            default_layer_set(1UL << (active ? 3 : 0));
+            // Mac/iOS side of switch is layer 0 and Win/Android side of switch is layer 2
+            default_layer_set(1UL << (active ? 2 : 0));
         }
         dip_switch_update_user(index, active);
 
