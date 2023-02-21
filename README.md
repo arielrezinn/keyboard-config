@@ -76,26 +76,33 @@ I prefer Vial to Via because, unlike Via, Vial is open-source and stores a copy 
         NEW_SAFE_RANGE,
     };
     ```
+    1. Define the macro input strings in the beginning of `keyboards/keychron/k6_pro/k6_pro.c`
+    ```
+    #define MACRO_INPUT_1 "Test1"
+    #define MACRO_INPUT_2 "Test2"
+    #define MACRO_INPUT_3 "Test3"
+    #define MACRO_INPUT_4 "Test4"
+    ``` 
     1. Add more cases to the switch statement in process_record_kb() in `keyboards/keychron/k6_pro/k6_pro.c`
     ```
     case KC_USR1:
         if (record->event.pressed) {
-            SEND_STRING("Test1");
+            SEND_STRING(MACRO_INPUT_1);
         }
         return false; // Skip all further processing of this key
     case KC_PAS1:
         if (record->event.pressed) {
-            SEND_STRING("Test2");
+            SEND_STRING(MACRO_INPUT_2);
         }
         return false; // Skip all further processing of this key
     case KC_USR2:
         if (record->event.pressed) {
-            SEND_STRING("Test3");
+            SEND_STRING(MACRO_INPUT_3);
         }
         return false; // Skip all further processing of this key
     case KC_PAS2:
         if (record->event.pressed) {
-            SEND_STRING("Test4");
+            SEND_STRING(MACRO_INPUT_4);
         }
         return false; // Skip all further processing of this key
     ```
